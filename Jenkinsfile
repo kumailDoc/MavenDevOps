@@ -1,14 +1,14 @@
 pipeline {
     agent any
-    tool{
+    tools{
     	maven "MAVEN3"
     	}
     	environment
     	{
     		DOCKERHUB_PWD=credentials('credentialsID_dockerHub')
     		}
-        
-        stage("Build Maven Project") {
+        stages {
+        stage('Build Maven') {
             steps {
             	script{
             		checkout([$class: 'GitSCM',
@@ -20,14 +20,14 @@ pipeline {
             }
         }
         
-        stage("Docker Login") {
+        stage('Docker Login') {
         	steps {
         		script {
         			bat 'docker login -u dkumail@my.centennialcollege.ca -p ${DOCKERHUB_PWD}'
         			}
         }
         
-        stage("Build Docker Image") {
+        stage('Build Docker Image') {
             steps {
                 script {
                     bat 'docker build -t kumailDoc/mavenprojectdevops'
