@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven "MAVEN3"
+        maven "MAVEN"
     }
     environment {
         DOCKERHUB_PWD = credentials('credentialsID_dockerHub')
