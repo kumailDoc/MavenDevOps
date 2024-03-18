@@ -8,7 +8,7 @@ pipeline {
     		DOCKERHUB_PWD=credentials('credentialsID_dockerHub')
     		}
         
-        stage('Build Maven Project') {
+        stage("Build Maven Project") {
             steps {
             	script{
             		checkout([$class: 'GitSCM',
@@ -27,7 +27,7 @@ pipeline {
         			}
         }
         
-        stage('Build Docker Image') {
+        stage("Build Docker Image") {
             steps {
                 script {
                     bat 'docker build -t kumailDoc/mavenprojectdevops'
